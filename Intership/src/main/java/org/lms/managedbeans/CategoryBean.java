@@ -1,10 +1,13 @@
-package com.journaldev.springhibernate.service;
+package org.lms.managedbeans;
+
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import com.journaldev.springhibernate.model.Category;
+import org.lms.model.Category;
+import org.lms.service.CategoryService;
 
 @ManagedBean(name = "categoryBean")
 @ViewScoped
@@ -47,6 +50,10 @@ public class CategoryBean {
 		category.setCategoryDescription(categoryDescription);
 		categoryService.addCategory(category);
 		return ("success.xhtml");
+	}
+	
+	public List<Category> listCategory() {
+		return categoryService.listCategory();
 	}
 
 }

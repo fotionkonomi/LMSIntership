@@ -1,18 +1,12 @@
-package com.journaldev.springhibernate.dao;
+package org.lms.dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import org.lms.model.Category;
 
-import com.journaldev.springhibernate.model.Category;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
@@ -32,7 +26,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public List<Category> listCategory() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Category> categoryList = session.createQuery("from Category").list();
+		List<Category> categoryList = session.createQuery("Select c from Category").list();
 		return categoryList;
 	}
 
