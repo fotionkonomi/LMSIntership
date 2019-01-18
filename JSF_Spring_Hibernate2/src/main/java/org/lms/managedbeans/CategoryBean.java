@@ -1,4 +1,4 @@
-package org.lms.service;
+package org.lms.managedbeans;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import org.lms.model.Category;
+import org.lms.service.CategoryService;
 
 @ManagedBean(name = "categoryBean")
 @ViewScoped

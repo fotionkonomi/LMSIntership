@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -48,10 +49,11 @@ public class User {
 	@Column(name = "activated", nullable = false)
 	private Boolean activated;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> rolesOfThisUser = new ArrayList<Role>();
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private List<Book> booksOfThisUser = new ArrayList<Book>();
 
@@ -235,7 +237,13 @@ public class User {
 				+ ", activated=" + activated + ", rolesOfThisUser=" + rolesOfThisUser + ", booksOfThisUser="
 				+ booksOfThisUser + "]";
 	}
-	
-	
+
+	public void addRole(Role role) {
+		Boolean test = this.rolesOfThisUser.add(role);
+		System.out.println(test);
+		role.getUsersThatHaveThisRole().add(this);
+		//role.setUsersThatHaveThisRole(users);
+		
+	}
 
 }

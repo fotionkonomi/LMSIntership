@@ -3,8 +3,10 @@ package org.lms.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +28,7 @@ public class Role {
 	@Column(name = "role_description", nullable = false, length = 255)
 	private String roleDescription;
 
-	@ManyToMany(mappedBy = "rolesOfThisUser")
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE, mappedBy = "rolesOfThisUser")
 	private List<User> usersThatHaveThisRole = new ArrayList<User>();
 
 	public Integer getRoleId() {

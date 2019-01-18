@@ -12,4 +12,6 @@ public class BookDAOImpl implements BookDAO{
 	private void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
 	}
+	
+	
 }

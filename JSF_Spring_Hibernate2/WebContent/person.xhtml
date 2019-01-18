@@ -48,7 +48,7 @@
 </style>
 </h:head>
 <h:body>
-	<h1>Add a Person</h1>
+	<h1>Add a Category</h1>
 	<h:form>
 		<table>
 			<tr>
@@ -57,14 +57,54 @@
 				</td>
 			</tr>
 			<tr>
-				<td><label>Country</label></td>
-				<td><h:inputText id="country" value="#{categoryBean.categoryDescription}"></h:inputText>
-				</td>
+				<td><label>Description</label></td>
+				<td><h:inputText id="country"
+						value="#{categoryBean.categoryDescription}"></h:inputText></td>
 			</tr>
 			<tr>
 				<td colspan="2"><h:commandButton
 						action="#{categoryBean.addCategory}" value="Add Person"></h:commandButton>
 				</td>
+			</tr>
+
+		</table>
+	</h:form>
+	<h1>Add a person</h1>
+	<h:form>
+		<table>
+			<tr>
+				<td><label>First name</label></td>
+				<td><h:inputText id="name" value="#{userBean.firstName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Last name</label></td>
+				<td><h:inputText id="country11" value="#{userBean.lastName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>User name</label></td>
+				<td><h:inputText id="country1" value="#{userBean.username}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Age</label></td>
+				<td><h:inputText id="country2" value="#{userBean.age}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Email</label></td>
+				<td><h:inputText id="country3" value="#{userBean.email}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Password</label></td>
+				<td><h:inputText id="country4" value="#{userBean.password}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton action="#{userBean.addUser}"
+						value="Add Person"></h:commandButton></td>
 			</tr>
 
 		</table>
