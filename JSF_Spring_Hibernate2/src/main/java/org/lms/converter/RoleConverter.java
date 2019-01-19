@@ -1,5 +1,10 @@
 package org.lms.converter;
 
-public class RoleConverter {
+import org.lms.dto.RoleDTO;
+import org.lms.model.Role;
 
+public interface RoleConverter {
+
+	RoleDTO toDTO(Role role);
+	Role toModel(RoleDTO roleDTO);
 }

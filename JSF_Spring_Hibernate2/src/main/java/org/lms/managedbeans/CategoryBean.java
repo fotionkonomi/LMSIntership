@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import org.lms.dto.CategoryDTO;
 import org.lms.model.Category;
 import org.lms.service.CategoryService;
 
@@ -45,14 +46,14 @@ public class CategoryBean {
 	}
 
 	public String addCategory() {
-		Category category = new Category();
-		category.setCategoryName(categoryName);
-		category.setCategoryDescription(categoryDescription);
-		categoryService.addCategory(category);
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setCategoryName(categoryName);
+		categoryDTO.setCategoryDescription(categoryDescription);
+		categoryService.addCategory(categoryDTO);
 		return ("success.xhtml");
 	}
 	
-	public List<Category> listCategory() {
+	public List<CategoryDTO> listCategory() {
 		return categoryService.listCategory();
 	}
 

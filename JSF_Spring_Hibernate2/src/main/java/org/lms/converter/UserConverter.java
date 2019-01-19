@@ -1,5 +1,11 @@
 package org.lms.converter;
 
-public class UserConverter {
+import org.lms.dto.UserDTO;
+import org.lms.model.User;
 
+public interface UserConverter {
+
+	UserDTO toDTO(User user);
+
+	User toModel(UserDTO userDTO);
 }

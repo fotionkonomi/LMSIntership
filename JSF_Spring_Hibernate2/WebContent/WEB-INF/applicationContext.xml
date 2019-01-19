@@ -55,34 +55,67 @@
 		</beans:property>
 	</beans:bean>
 
+	<beans:bean id="categoryConverter"
+		class="org.lms.converter.CategoryConverterImpl">
+	</beans:bean>
+	<beans:bean id="userConverter"
+		class="org.lms.converter.UserConverterImpl">
+	</beans:bean>
+	<beans:bean id="bookConverter"
+		class="org.lms.converter.BookConverterImpl">
+	</beans:bean>
+	<beans:bean id="roleConverter"
+		class="org.lms.converter.RoleConverterImpl">
+	</beans:bean>
+
 	<beans:bean id="categoryDAO"
 		class="org.lms.dao.CategoryDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="categoryConverter"
+			ref="categoryConverter" />
 	</beans:bean>
 	<beans:bean id="categoryService"
 		class="org.lms.service.CategoryServiceImpl">
 		<beans:property name="categoryDAO" ref="categoryDAO"></beans:property>
+
 	</beans:bean>
 
 	<beans:bean id="userDAO" class="org.lms.dao.UserDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="userConverter"
+			ref="userConverter"></beans:property>
 	</beans:bean>
 	<beans:bean id="userService"
 		class="org.lms.service.UserServiceImpl">
 		<beans:property name="userDAO" ref="userDAO"></beans:property>
+
 	</beans:bean>
-	
+
 	<beans:bean id="roleDAO" class="org.lms.dao.RoleDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="roleConverter"
+			ref="roleConverter"></beans:property>
 	</beans:bean>
 	<beans:bean id="roleService"
 		class="org.lms.service.RoleServiceImpl">
 		<beans:property name="roleDAO" ref="roleDAO"></beans:property>
 	</beans:bean>
-	
+
+	<beans:bean id="bookDAO" class="org.lms.dao.BookDAOImpl">
+		<beans:property name="sessionFactory"
+			ref="hibernate4AnnotatedSessionFactory" />
+		<beans:property name="bookConverter"
+			ref="bookConverter"></beans:property>
+	</beans:bean>
+	<beans:bean id="bookService"
+		class="org.lms.service.BookServiceImpl">
+
+		<beans:property name="bookDAO" ref="bookDAO"></beans:property>
+	</beans:bean>
+
 	<context:component-scan base-package="org.lms" />
 
 	<tx:annotation-driven

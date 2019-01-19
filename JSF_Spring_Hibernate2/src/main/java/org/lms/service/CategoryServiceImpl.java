@@ -3,6 +3,7 @@ package org.lms.service;
 import java.util.List;
 
 import org.lms.dao.CategoryDAO;
+import org.lms.dto.CategoryDTO;
 import org.lms.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,13 @@ public class CategoryServiceImpl implements CategoryService {
  
     @Override
     @Transactional
-    public void addCategory(Category category) {
-        this.categoryDAO.addCategory(category);
+    public void addCategory(CategoryDTO categoryDTO) {
+        this.categoryDAO.addCategory(categoryDTO);
     }
  
     @Override
     @Transactional
-    public List<Category> listCategory() {
+    public List<CategoryDTO> listCategory() {
         return this.categoryDAO.listCategory();
     }
  
