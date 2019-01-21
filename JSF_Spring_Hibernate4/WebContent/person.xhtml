@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>JSF Spring Hibernate Integration</title>
+	<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+}
+
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+</style>
+</h:head>
+<h:body>
+	<h1>Add a Category</h1>
+	<h:form>
+		<table>
+			<tr>
+				<td><label>Name</label></td>
+				<td><h:inputText id="name" value="#{categoryBean.categoryName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Description</label></td>
+				<td><h:inputText id="country"
+						value="#{categoryBean.categoryDescription}"></h:inputText></td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton
+						action="#{categoryBean.addCategory}" value="Add Person"></h:commandButton>
+				</td>
+			</tr>
+
+		</table>
+	</h:form>
+	<h1>Add a person</h1>
+	<h:form>
+		<table>
+			<tr>
+				<td><label>First name</label></td>
+				<td><h:inputText id="name" value="#{userBean.firstName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Last name</label></td>
+				<td><h:inputText id="country11" value="#{userBean.lastName}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>User name</label></td>
+				<td><h:inputText id="country1" value="#{userBean.username}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Age</label></td>
+				<td><h:inputText id="country2" value="#{userBean.age}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Email</label></td>
+				<td><h:inputText id="country3" value="#{userBean.email}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Password</label></td>
+				<td><h:inputText id="country4" value="#{userBean.password}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h:commandButton action="#{userBean.addUser}"
+						value="Add Person"></h:commandButton></td>
+			</tr>
+
+		</table>
+
+	</h:form>
+
+</h:body>
+</html>

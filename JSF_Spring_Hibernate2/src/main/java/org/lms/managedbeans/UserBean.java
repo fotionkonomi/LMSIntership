@@ -2,9 +2,11 @@ package org.lms.managedbeans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.lms.model.Role;
 import org.lms.model.User;
@@ -105,7 +107,7 @@ public class UserBean {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
-		user.setAge(age);
+		user.setAge(20);
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setGender(true);
@@ -113,8 +115,8 @@ public class UserBean {
 		user.setActivated(false);
 		Role role = roleService.listRole().get(0);
 		user.addRole(role);
-		userService.addUser(user);	
-	//	roleService.updateRole(role);
+		userService.addUser(user);
+		// roleService.updateRole(role);
 		return ("success");
 	}
 

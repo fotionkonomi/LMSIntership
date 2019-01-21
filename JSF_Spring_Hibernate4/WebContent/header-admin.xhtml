@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<h:outputStylesheet library="css" name="navbar.css" />
+</h:head>
+<h:body>
+	<header>
+		<div class="container">
+			<h:form>
+				<nav>
+					<a href="admin-logged.xhtml"><h:graphicImage class="logo"
+							url="https://img.icons8.com/metro/1600/book.png" /></a>
+					<ul>
+						<li><div class="dropdown">
+
+									<h:commandLink class="link"
+										action="#{userBean.goToCategory}">Add Category</h:commandLink>
+							</div></li>
+						<li><h:commandLink action="#{userBean.goToBook}">Add Book</h:commandLink></li>
+						<li><h:commandLink action="#{userBean.goToRequests}">Requests</h:commandLink></li>
+						<li><div class="dropdown">
+
+								<a href="#" class="dropbtn">#{userBean.username}</a>
+								<div class="dropdown-content">
+									<a href="profile.xhtml">Manage Profile</a>
+									<h:commandLink action="#{userBean.goToSuccess}">Log Out</h:commandLink>
+								</div>
+							</div></li>
+					</ul>
+				</nav>
+			</h:form>
+		</div>
+	</header>
+	<br />
+	<br />
+	<br />
+	<h:outputText value = "#{userBean.test()}"></h:outputText>
+	<h:form>
+		<h:commandButton action="#{userBean.logOut()}" value = "LogOut"></h:commandButton>
+	</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet library="css" name="main.css" />
+	<h:outputStylesheet library="css" name="util.css" />
+	<style>
+		.pf-messages-warning {
+			background-color: grey;
+		}
+</style>
+</h:head>
+<h:body>
+	<p:tooltip />
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<h:form class="login100-form validate-form">
+					<span class="login100-form-title p-b-26"> Welcome </span>
+					<span class="login100-form-title p-b-48"> <i
+						class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input">
+						<h:inputText class="input100" value="#{userBean.firstName}"
+							a:placeholder="First Name" required="true" requiredMessage="Please enter your name" id="firstName"></h:inputText>
+							<p:messages for="firstName" closable="true"></p:messages>
+					</div>
+					
+
+					<div class="wrap-input100 validate-input">
+						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+						</span>
+						<h:inputText class="input100" a:placeholder="Last Name"
+							value="#{userBean.lastName}"></h:inputText>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<h:inputText class="input100" value="#{userBean.username}"
+							a:placeholder="Username"></h:inputText>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+						</span>
+						<h:inputText class="input100" a:placeholder="Email"
+							value="#{userBean.email}"></h:inputText>
+					</div>
+					
+					<div class="wrap-input100 validate-input">
+						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+						</span>
+						<h:inputText class="input100" a:placeholder="Age"
+							value="#{userBean.age}"></h:inputText>
+					</div>
+
+					<div class="wrap-input100 validate-input">
+						<h:inputText class="input100" value="#{userBean.password}"
+							a:placeholder="Password"></h:inputText>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<h:commandButton class="button" value="Sign Up"
+								action="#{userBean.addUser}" />
+
+						</div>
+
+					</div>
+					
+				</h:form>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<div id="dropDownSelect1"></div>
+</h:body>
+</html>

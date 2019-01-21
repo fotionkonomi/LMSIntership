@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15475545160840" configfile="/JSF_Spring_Hibernate4/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="signUp.xhtml" id="pf15480601325663" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15480601325664" path="signUp.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="header-admin.xhtml" id="pf15480601325665" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15480601325664 pf154807184513211" path="header-admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf154807184513312" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf154807184513211" path="index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="request.xhtml" id="pf154808456463015" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf154808456463016" inlinks="pf154808456463016" path="request.xhtml"/>
+  <links id="pf15480601325664" target="pf15480601325665" source="pf15480601325663" outcome="page" fromaction="#{userBean.addUser}"/>
+  <links id="pf154807184513211" target="pf15480601325665" source="pf154807184513312" outcome="login" fromaction="#{userBean.logIn}"/>
+  <links id="pf154808456463016" target="pf154808456463015" source="pf154808456463015" outcome="here" redirect="true" fromaction="#{userBean.activate}"/>
+</pageflow:Pageflow>
