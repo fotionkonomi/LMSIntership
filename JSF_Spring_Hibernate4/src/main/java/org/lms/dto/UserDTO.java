@@ -1,10 +1,13 @@
 package org.lms.dto;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-public class UserDTO {
+public class UserDTO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer userId;
 	private String firstName;
 	private String lastName;
@@ -14,7 +17,7 @@ public class UserDTO {
 	private String email;
 	private Integer activated;
 	private String password;
-	private List<RoleDTO> rolesOfThisUser = new ArrayList<>();
+	//private List<RoleDTO> rolesOfThisUser = new ArrayList<>();
 	
 	public UserDTO() {
 
@@ -92,14 +95,14 @@ public class UserDTO {
 		this.password = password;
 	}
 
-	public List<RoleDTO> getRolesOfThisUser() {
+/*	public List<RoleDTO> getRolesOfThisUser() {
 		return rolesOfThisUser;
 	}
 
 	public void setRolesOfThisUser(List<RoleDTO> rolesOfThisUser) {
 		this.rolesOfThisUser = rolesOfThisUser;
 	}
-	
+*/	
 	
 
 }

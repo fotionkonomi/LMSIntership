@@ -12,22 +12,24 @@
 		<div class="container">
 			<h:form>
 				<nav>
-					<a href="admin-logged.xhtml"><h:graphicImage class="logo"
-							url="https://img.icons8.com/metro/1600/book.png" /></a>
+					<a href="request.xhtml"><h:graphicImage class="logo"
+							url="https://parentnetworkwny.org/wp-content/uploads/resources-blue.png" /></a>
 					<ul>
 						<li><div class="dropdown">
-
-									<h:commandLink class="link"
-										action="#{userBean.goToCategory}">Add Category</h:commandLink>
+								<ui:fragment rendered="#{userBean.isUserAdmin() eq true}">
+									<h:commandLink class="link" action="#{userBean.goToCategory}">Add Category</h:commandLink>
+								</ui:fragment>
 							</div></li>
+
 						<li><h:commandLink action="#{userBean.goToBook}">Add Book</h:commandLink></li>
+
 						<li><h:commandLink action="#{userBean.goToRequests}">Requests</h:commandLink></li>
 						<li><div class="dropdown">
 
 								<a href="#" class="dropbtn">#{userBean.username}</a>
 								<div class="dropdown-content">
 									<a href="profile.xhtml">Manage Profile</a>
-									<h:commandLink action="#{userBean.goToSuccess}">Log Out</h:commandLink>
+									<h:commandLink action="#{logOutBean.logout}">Log Out</h:commandLink>
 								</div>
 							</div></li>
 					</ul>
@@ -38,9 +40,8 @@
 	<br />
 	<br />
 	<br />
-	<h:outputText value = "#{userBean.test()}"></h:outputText>
 	<h:form>
-		<h:commandButton action="#{userBean.logOut()}" value = "LogOut"></h:commandButton>
+		<h:commandButton action="#{userBean.logOut()}" value="LogOut"></h:commandButton>
 	</h:form>
 
 </h:body>

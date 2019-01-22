@@ -1,10 +1,14 @@
 package org.lms.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CategoryDTO {
 
 	private Integer categoryId;
 	private String categoryName;
 	private String categoryDescription;
+	//private List<BookDTO> booksOfThisCategory = new ArrayList<>();
 
 	public CategoryDTO() {
 
@@ -33,5 +37,13 @@ public class CategoryDTO {
 	public void setCategoryDescription(String categoryDescription) {
 		this.categoryDescription = categoryDescription;
 	}
+
+	/*public List<BookDTO> getBooksOfThisCategory() {
+		return booksOfThisCategory;
+	}
+
+	public void setBooksOfThisCategory(List<BookDTO> booksOfThisCategory) {
+		this.booksOfThisCategory = booksOfThisCategory;
+	}*/
 
 }

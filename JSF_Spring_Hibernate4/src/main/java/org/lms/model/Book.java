@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.lms.model.Category;
 
 @Entity
 @Table(name = "books")
@@ -26,16 +27,9 @@ public class Book {
 	@Column(name = "book_author", nullable = false, length = 40)
 	private String bookAuthor;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "category_id", nullable = false)
 	private Category categoryOfThisBook;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false)
-	private User booker;
-
-	@Column(name = "status", nullable = false)
-	private Integer status;
 
 	public Integer getBookId() {
 		return bookId;
@@ -67,22 +61,6 @@ public class Book {
 
 	public void setCategoryOfThisBook(Category categoryOfThisBook) {
 		this.categoryOfThisBook = categoryOfThisBook;
-	}
-
-	public User getBooker() {
-		return booker;
-	}
-
-	public void setBooker(User booker) {
-		this.booker = booker;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
 	}
 
 }

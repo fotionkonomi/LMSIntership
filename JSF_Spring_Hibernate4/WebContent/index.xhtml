@@ -26,7 +26,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input">
-						<h:inputText class="input100" value="#{userBean.username}"
+						<h:inputText class="input100" value="#{loginBean.username}"
 							a:placeholder="Username"></h:inputText>
 					</div>
 
@@ -34,14 +34,14 @@
 						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
 						</span>
 						<h:inputSecret class="input100" a:placeholder="Password"
-							value="#{userBean.password}"></h:inputSecret>
+							value="#{loginBean.password}"></h:inputSecret>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<h:commandButton class="button" value="Log In"
-								action="#{userBean.logIn}" />
+								action="#{loginBean.login}" />
 						</div>
 					</div>
 					<p:messages closable="true"></p:messages>

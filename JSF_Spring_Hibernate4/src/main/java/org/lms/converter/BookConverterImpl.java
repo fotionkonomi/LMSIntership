@@ -18,15 +18,13 @@ public class BookConverterImpl implements BookConverter {
 
 	public Book toModel(BookDTO bookDTO) {
 		Book book = new Book();
-		// book.setBookId(bookDTO.getBookId());
+		Integer id = bookDTO.getBookId();
+		if (id != null) {
+			book.setBookId(bookDTO.getBookId());
+		}
 		book.setBookTitle(bookDTO.getBookTitle());
 		book.setBookAuthor(bookDTO.getBookAuthor());
 		book.setCategoryOfThisBook(categoryConverter.toModel(bookDTO.getCategoryOfThisBook()));
-		UserDTO userDTO = bookDTO.getBooker();
-		if (userDTO != null) {
-			book.setBooker(userConverter.toModel(userDTO));
-		}
-		book.setStatus(bookDTO.getStatus());
 		return book;
 	}
 
@@ -35,11 +33,6 @@ public class BookConverterImpl implements BookConverter {
 		bookDTO.setBookId(book.getBookId());
 		bookDTO.setBookTitle(book.getBookTitle());
 		bookDTO.setCategoryOfThisBook(categoryConverter.toDTO(book.getCategoryOfThisBook()));
-		User user = book.getBooker();
-		if (user != null) {
-			bookDTO.setBooker(userConverter.toDTO(user));
-		}
-		bookDTO.setStatus(book.getStatus());
 		return bookDTO;
 	}
 

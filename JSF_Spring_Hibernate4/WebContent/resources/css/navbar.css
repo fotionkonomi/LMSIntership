@@ -5,8 +5,14 @@
 	margin: 0 auto;
 }
 
+body {
+	background-image: url("https://stripe.com/img/blog/posts/connect-frontend/header-background.png"); 
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 header {
-	background: #f4f4f4;
+	background: #200582;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -39,32 +45,32 @@ nav li {
 }
 
 nav a {
-	color: #534d53;
+	color: #f2effc;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
 }
 
 .link {
-	color: #534d53;
+	color: #f2effc;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 14px;
 }
 
 nav a:hover {
-	color: #040404;
+	color: #fee7ea;
 }
 
 .link:hover {
-	color: #040404;
+	color: #fee7ea;
 }
 
 nav a::before {
 	content: '';
 	display: block;
 	height: 5px;
-	background-color: #5a5859;
+	background-color: #fee7ea;
 	position: absolute;
 	top: 0;
 	width: 0%;
@@ -75,7 +81,7 @@ nav a::before {
 	content: '';
 	display: block;
 	height: 5px;
-	background-color: #5a5859;
+	background-color: #fee7ea;
 	position: absolute;
 	top: 0;
 	width: 0%;

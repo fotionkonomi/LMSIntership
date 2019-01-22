@@ -27,12 +27,12 @@ public class UserConverterImpl implements UserConverter {
 		user.setEmail(userDTO.getEmail());
 		user.setGender(userDTO.getGender());
 		user.setPassword(userDTO.getPassword());
-		List<RoleDTO> rolesDTO = userDTO.getRolesOfThisUser();
+	/*	List<RoleDTO> rolesDTO = userDTO.getRolesOfThisUser();
 		List<Role> roles = new ArrayList<>();
 		for (RoleDTO roleDTO : rolesDTO) {
 			roles.add(roleConverter.toModel(roleDTO));
 		}
-		user.setRolesOfThisUser(roles);
+		user.setRolesOfThisUser(roles);*/
 		return user;
 
 	}
@@ -48,13 +48,13 @@ public class UserConverterImpl implements UserConverter {
 		userDTO.setEmail(user.getEmail());
 		userDTO.setGender(user.getGender());
 		userDTO.setPassword(user.getPassword());
-		List<Role> roles = user.getRolesOfThisUser();
+	/*	List<Role> roles = user.getRolesOfThisUser();
 		List<RoleDTO> rolesDTO = new ArrayList<>();
 		for (Role role : roles) {
 			rolesDTO.add(roleConverter.toDTO(role));
 		}
 		userDTO.setRolesOfThisUser(rolesDTO);
-
+*/
 		return userDTO;
 
 	}

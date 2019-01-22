@@ -9,11 +9,7 @@ import org.lms.model.User;
 
 public interface UserDAO {
 
-	void addUser(UserDTO userDTO) throws ConstraintViolationException;
-
 	List<UserDTO> listUser();
-
-	UserDTO find(String username, String password);
 
 	List<UserDTO> findUsersThatAreNotActivated();
 
@@ -22,4 +18,6 @@ public interface UserDAO {
 	void deleteUser(UserDTO userDTO);
 
 	void deActivateUser(UserDTO userDTO);
+	
+	Boolean isUserAdmin(UserDTO userDTO);
 }

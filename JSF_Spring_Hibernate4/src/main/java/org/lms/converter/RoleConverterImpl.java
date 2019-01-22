@@ -5,10 +5,12 @@ import org.lms.dto.UserDTO;
 import org.lms.model.Role;
 import org.lms.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class RoleConverterImpl implements RoleConverter {
 
 	@Autowired
@@ -19,12 +21,12 @@ public class RoleConverterImpl implements RoleConverter {
 	//	role.setRoleId(roleDTO.getRoleId());
 		role.setRoleName(roleDTO.getRoleName());
 		role.setRoleDescription(roleDTO.getRoleDescription());
-		List<UserDTO> usersDTO = roleDTO.getUsersThatHaveThisRole();
+	/*	List<UserDTO> usersDTO = roleDTO.getUsersThatHaveThisRole();
 		List<User> users = new ArrayList<User>();
 		for(UserDTO userDTO : usersDTO) {
 			users.add(userConverter.toModel(userDTO));
 		}
-		role.setUsersThatHaveThisRole(users);
+		role.setUsersThatHaveThisRole(users);*/
 		return role;
 	}
 
@@ -33,12 +35,12 @@ public class RoleConverterImpl implements RoleConverter {
 		roleDTO.setRoleId(role.getRoleId());
 		roleDTO.setRoleName(role.getRoleDescription());
 		roleDTO.setRoleDescription(role.getRoleDescription());
-		List<User> users = role.getUsersThatHaveThisRole();
+	/*	List<User> users = role.getUsersThatHaveThisRole();
 		List<UserDTO> usersDTO = new ArrayList<>();
 		for(User user: users) {
 			usersDTO.add(userConverter.toDTO(user));
 		}
-		roleDTO.setUsersThatHaveThisRole(usersDTO);
+		roleDTO.setUsersThatHaveThisRole(usersDTO); */
 		return roleDTO;
 	}
 

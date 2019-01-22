@@ -8,7 +8,7 @@ public class RoleDTO {
 	private Integer roleId;
 	private String roleName;
 	private String roleDescription;
-	private List<UserDTO> usersThatHaveThisRole = new ArrayList<>();
+//	private List<UserDTO> usersThatHaveThisRole = new ArrayList<>();
 	
 	public RoleDTO() {
 
@@ -38,13 +38,13 @@ public class RoleDTO {
 		this.roleDescription = roleDescription;
 	}
 
-	public List<UserDTO> getUsersThatHaveThisRole() {
+/*	public List<UserDTO> getUsersThatHaveThisRole() {
 		return usersThatHaveThisRole;
 	}
 
 	public void setUsersThatHaveThisRole(List<UserDTO> usersThatHaveThisRole) {
 		this.usersThatHaveThisRole = usersThatHaveThisRole;
 	}
-
+*/
 	
 }

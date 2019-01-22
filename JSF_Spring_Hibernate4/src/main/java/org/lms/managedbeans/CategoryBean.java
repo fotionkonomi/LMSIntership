@@ -11,16 +11,25 @@ import org.lms.model.Category;
 import org.lms.service.CategoryService;
 
 @ManagedBean(name = "categoryBean")
-@ViewScoped
 public class CategoryBean {
 
 	@ManagedProperty(value = "#{categoryService}")
 	private CategoryService categoryService;
-	
+
 	private String categoryName;
 
 	private String categoryDescription;
 
+	private CategoryDTO categoryDTO = new CategoryDTO();
+
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
+	}
+
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
+	}
+	
 	public String getCategoryName() {
 		return categoryName;
 	}
@@ -36,7 +45,7 @@ public class CategoryBean {
 	public void setCategoryDescription(String categoryDescription) {
 		this.categoryDescription = categoryDescription;
 	}
-	
+
 	public CategoryService getCategoryService() {
 		return categoryService;
 	}
@@ -46,15 +55,17 @@ public class CategoryBean {
 	}
 
 	public String addCategory() {
-		CategoryDTO categoryDTO = new CategoryDTO();
 		categoryDTO.setCategoryName(categoryName);
 		categoryDTO.setCategoryDescription(categoryDescription);
 		categoryService.addCategory(categoryDTO);
-		return ("success.xhtml");
+		return ("added");
 	}
-	
-	public List<CategoryDTO> listCategory() {
+
+	public List<CategoryDTO> listCategories() {
 		return categoryService.listCategory();
 	}
 
+	public List<String> listCategoriesString() {
+		return categoryService.listCategoriesInString();
+	}
 }

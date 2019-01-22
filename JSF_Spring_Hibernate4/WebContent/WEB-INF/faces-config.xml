@@ -9,9 +9,33 @@
    <from-view-id>signUp.xhtml</from-view-id> 
    
    <navigation-case> 
-      <from-action>#{userBean.addUser}</from-action> 
+      <from-action>#{signUpBean.addUser}</from-action> 
       <from-outcome>page</from-outcome> 
-      <to-view-id>header-admin.xhtml</to-view-id> 
+      <to-view-id>not-activated.xhtml</to-view-id> 
+   </navigation-case> 
+   
+   
+</navigation-rule>
+
+<navigation-rule> 
+   <from-view-id>book.xhtml</from-view-id> 
+   
+   <navigation-case> 
+      <from-action>#{bookBean.addBook}</from-action> 
+      <from-outcome>added</from-outcome> 
+      <to-view-id>book-added.xhtml</to-view-id> 
+   </navigation-case> 
+   
+   
+</navigation-rule>
+
+<navigation-rule> 
+   <from-view-id>category.xhtml</from-view-id> 
+   
+   <navigation-case> 
+      <from-action>#{categoryBean.addCategory}</from-action> 
+      <from-outcome>added</from-outcome> 
+      <to-view-id>category-added.xhtml</to-view-id> 
    </navigation-case> 
    
    
@@ -20,13 +44,13 @@
 <navigation-rule>
 	<from-view-id>index.xhtml</from-view-id>
 	<navigation-case>
-		<from-action>#{userBean.logIn}</from-action>
+		<from-action>#{loginBean.login}</from-action>
 		<from-outcome>login</from-outcome>
 		<to-view-id>header-admin.xhtml</to-view-id>
 	</navigation-case>
 		
 	<navigation-case>
-		<from-action>#{userBean.logIn}</from-action>
+		<from-action>#{loginBean.logIn}</from-action>
 		<from-outcome>notActivated</from-outcome>
 		<to-view-id>not-activated.xhtml</to-view-id>	
 	</navigation-case>

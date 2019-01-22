@@ -3,6 +3,7 @@ package org.lms.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.lms.converter.CategoryConverter;
@@ -51,6 +52,24 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	public void setCategoryConverter(CategoryConverter categoryConverter) {
 		this.categoryConverter = categoryConverter;
+	}
+
+	@Override
+	public CategoryDTO categoryViaCategory(String categoryName) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select c from Category c where c.categoryName = :categoryName");
+		query.setParameter("categoryName", categoryName);
+		Category category = (Category)query.uniqueResult();
+		return categoryConverter.toDTO(category);
+	}
+	
+	@Override
+	public Category getCategoryById(CategoryDTO categoryDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select c from Category c where c.categoryId = :categoryId");
+		query.setParameter("categoryId", categoryDTO.getCategoryId());
+		Category category = (Category)query.uniqueResult();
+		return category;
 	}
 
 }

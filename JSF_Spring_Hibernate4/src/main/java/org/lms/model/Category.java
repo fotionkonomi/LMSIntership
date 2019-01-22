@@ -34,6 +34,9 @@ public class Category {
 	@Column(name = "category_description", nullable = false, length = 255)
 	private String categoryDescription;
 
+	@OneToMany(mappedBy = "categoryOfThisBook")
+	private List<Book> booksOfThisCategory = new ArrayList<Book>();
+
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -58,6 +61,13 @@ public class Category {
 		this.categoryDescription = categoryDescription;
 	}
 
+	public List<Book> getBooksOfThisCategory() {
+		return booksOfThisCategory;
+	}
+
+	public void setBooksOfThisCategory(List<Book> booksOfThisCategory) {
+		this.booksOfThisCategory = booksOfThisCategory;
+	}
 
 	@Override
 	public String toString() {
@@ -65,5 +75,4 @@ public class Category {
 				+ categoryDescription + "]";
 	}
 
-	
 }

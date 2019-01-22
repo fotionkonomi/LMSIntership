@@ -14,22 +14,20 @@ import org.lms.model.Role;
 import org.lms.model.User;
 import org.lms.service.RoleServiceImpl;
 import org.lms.utils.Encryptor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
 
+	@Autowired
 	private SessionFactory sessionFactory;
 
+	@Autowired
 	private UserConverter userConverter;
 
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
-	}
-
-	public void addUser(UserDTO userDTO) throws ConstraintViolationException {
-		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(userConverter.toModel(userDTO));
 	}
 
 	public List<UserDTO> listUser() {
@@ -42,19 +40,7 @@ public class UserDAOImpl implements UserDAO {
 		return userDTOList;
 	}
 
-	@Override
-	public UserDTO find(String username, String password) {
-		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session
-				.createQuery("Select u from User u where u.username = :username AND u.password = :password");
-		query.setParameter("username", username);
-		query.setParameter("password", Encryptor.encrypt(password, 12));
-		User user = (User) query.uniqueResult();
-		if (user != null) {
-			return userConverter.toDTO(user);
-		}
-		return null;
-	}
+	
 	
 	@Override
 	public List<UserDTO> findUsersThatAreNotActivated() {	
@@ -98,6 +84,26 @@ public class UserDAOImpl implements UserDAO {
 		User user = userConverter.toModel(userDTO);
 		user.setActivated(-1);
 		session.merge(user);
+	}
+	
+	@Override
+	public Boolean isUserAdmin(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select r from Role r where r.roleId=1");
+		Role role = (Role)query.uniqueResult();
+		User user = getUserById(userDTO);
+		if(user.getRolesOfThisUser().contains(role)) {
+			return true;
+		} else {
+			return false;
+		} 
+	}
+	
+	public User getUserById(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select u from User u where u.userId=:userId");
+		query.setParameter("userId", userDTO.getUserId());
+		return (User)query.uniqueResult();
 	}
 	
 
