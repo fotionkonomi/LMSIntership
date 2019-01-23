@@ -22,7 +22,6 @@
 	border: solid;
 	border-color: #adadad;
 	font-size: 14px;
-	
 }
 </style>
 </h:head>
@@ -34,12 +33,15 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<h:form class="login100-form validate-form">
-					<center><h2>Welcome</h2></center>
-					<br/>
+					<p:growl id="message" showDetail="true" />
+					<center>
+						<h2>Welcome</h2>
+					</center>
+					<br />
 					<div class="wrap-input100 validate-input">
-						<h:inputText class="input100" value="#{userBean.firstName}"
-							a:placeholder="First Name" required="true"
-							requiredMessage="Please enter your first name" id="firstName"></h:inputText>
+						<h:inputText class="input100"
+							value="#{userBean.userDTOChanges.firstName}"
+							a:placeholder="First Name" id="firstName"></h:inputText>
 						<p:messages for="firstName" closable="true"></p:messages>
 					</div>
 
@@ -47,26 +49,25 @@
 					<div class="wrap-input100 validate-input">
 						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
 						</span>
-						<h:inputText class="input100" required="true" id="lastName"
-							requiredMessage="Please enter your last name"
-							a:placeholder="Last Name" value="#{userBean.lastName}"></h:inputText>
+						<h:inputText class="input100" id="lastName"
+							a:placeholder="Last Name"
+							value="#{userBean.userDTOChanges.lastName}"></h:inputText>
 						<p:messages for="lastName" closable="true"></p:messages>
 
 					</div>
 
 					<div class="wrap-input100 validate-input">
-						<h:inputText class="input100" required="true"
-							requiredMessage="Please enter a username" id="username"
-							value="#{userBean.username}" a:placeholder="Username"></h:inputText>
+						<h:inputText class="input100" id="username"
+							value="#{userBean.userDTOChanges.username}"
+							a:placeholder="Username"></h:inputText>
 						<p:messages for="username" closable="true"></p:messages>
 					</div>
 
 					<div class="wrap-input100 validate-input">
 						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
 						</span>
-						<h:inputText class="input100" required="true"
-							requiredMessage="Please enter an email" a:placeholder="Email"
-							value="#{userBean.email}" id="email"
+						<h:inputText class="input100" a:placeholder="Email"
+							value="#{userBean.userDTOChanges.email}" id="email"
 							validatorMessage="Email format is not correct">
 							<f:validateRegex
 								pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
@@ -77,43 +78,48 @@
 					<div class="wrap-input100 validate-input">
 						<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
 						</span>
-						<h:inputText class="input100" id="age" required="true"
-							requiredMessage="Please enter your age"
+						<h:inputText class="input100" id="age"
 							converterMessage="Please enter a number" a:placeholder="Age"
-							value="#{userBean.age}">
+							value="#{userBean.userDTOChanges.age}">
 							<f:convertNumber integerOnly="true"></f:convertNumber>
 
 						</h:inputText>
 						<p:messages for="age" closable="true"></p:messages>
 					</div>
 
-						<h:selectOneMenu id="gender" class="select" value="#{userBean.gender}">
-							<f:selectItem itemValue="0" itemLabel="Select your gender" />
-							<f:selectItem itemValue="Male" itemLabel="Male" />
-							<f:selectItem itemValue="Female" itemLabel="Female" />
-						</h:selectOneMenu>
-						<p:messages for="gender" closable="true"></p:messages>
-					<br/>
-					<br/>
-					<br/>
-					
 					<div class="wrap-input100 validate-input">
-						<h:inputSecret class="input100" value="#{userBean.password}"
-							required="true" requiredMessage="Please enter a password"
+						<h:inputSecret class="input100"
+							value="#{userBean.userDTOChanges.password}"
 							validatorMessage="Password must contain at least an uppercase, a lowercase and a number"
 							a:placeholder="Password" id="password">
 							<f:validateRegex pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" />
 						</h:inputSecret>
 						<p:messages for="password" closable="true"></p:messages>
 					</div>
+
+					<div class="wrap-input100 validate-input">
+						<h:inputSecret class="input100" value="#{userBean.confirmation}"
+							a:placeholder="Confirmation password"></h:inputSecret>
+						<p:messages for="confirmation" closable="true"></p:messages>
+					</div>
 					<p:messages for="Existing" closable="true">
-					
+
 					</p:messages>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<h:commandButton class="button" value="Change"
-								action="#{userBean.addUser}" />
+							<p:commandButton class="button" value="Change"
+								action="#{userBean.change}" update="message">
+								<p:confirm header="Confirmation" message="Are you sure?" />
+							</p:commandButton>
+
+							<p:confirmDialog global="true" showEffect="fade"
+								hideEffect="fade">
+								<p:commandButton value="Yes" type="button"
+									styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+								<p:commandButton value="No" type="button"
+									styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+							</p:confirmDialog>
 
 						</div>
 

@@ -28,7 +28,7 @@ public class LoginBean {
 	public String login() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		userDTO = loginService.login(username, password);
-
+		
 		if (userDTO == null) {
 			context.addMessage(null, new FacesMessage("Wrong username or password"));
 			return null;
@@ -40,7 +40,7 @@ public class LoginBean {
 			context.getExternalContext().getSessionMap().put("username", userDTO.getUsername());
 			context.getExternalContext().getSessionMap().put("email", userDTO.getEmail());
 			context.getExternalContext().getSessionMap().put("age", userDTO.getAge());
-
+			
 			return ("login");
 		}
 	}

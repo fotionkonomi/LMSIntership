@@ -17,13 +17,13 @@
 					<ul>
 						<li><div class="dropdown">
 								<ui:fragment rendered="#{userBean.isUserAdmin() eq true}">
-									<h:commandLink class="link" action="#{userBean.goToCategory}">Add Category</h:commandLink>
+									<a href="category.xhtml">Add Category</a>
 								</ui:fragment>
 							</div></li>
 
-						<li><h:commandLink action="#{userBean.goToBook}">Add Book</h:commandLink></li>
+						<li><a href="book.xhtml">Add Book</a></li>
 
-						<li><h:commandLink action="#{userBean.goToRequests}">Requests</h:commandLink></li>
+						<li><a href="request.xhtml">Requests</a></li>
 						<li><div class="dropdown">
 
 								<a href="#" class="dropbtn">#{userBean.username}</a>
@@ -40,9 +40,6 @@
 	<br />
 	<br />
 	<br />
-	<h:form>
-		<h:commandButton action="#{userBean.logOut()}" value="LogOut"></h:commandButton>
-	</h:form>
 
 </h:body>
 </html>

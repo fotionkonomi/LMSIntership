@@ -5,6 +5,7 @@ import java.util.List;
 import org.lms.dao.UserDAO;
 import org.lms.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,6 +49,12 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	public Boolean isUserAdmin(UserDTO userDTO) {
 		return userDAO.isUserAdmin(userDTO);
+	}
+
+	@Override
+	@Transactional
+	public void updateUser(UserDTO userDTO) throws DataIntegrityViolationException{
+		this.userDAO.updateUser(userDTO);
 	}
 
 	public UserDAO getUserDAO() {

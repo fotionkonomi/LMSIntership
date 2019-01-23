@@ -3,6 +3,7 @@ package org.lms.service;
 import java.util.List;
 
 import org.lms.dto.UserDTO;
+import org.springframework.dao.DataIntegrityViolationException;
 
 public interface UserService {
 
@@ -12,4 +13,5 @@ public interface UserService {
     void deleteUser(UserDTO userDTO);
     void deActivateUser(UserDTO userDTO);
     Boolean isUserAdmin(UserDTO userDTO);
+    void updateUser(UserDTO userDTO) throws DataIntegrityViolationException;
 }

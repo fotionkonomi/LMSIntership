@@ -15,6 +15,7 @@ import org.lms.model.User;
 import org.lms.service.RoleServiceImpl;
 import org.lms.utils.Encryptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -104,6 +105,19 @@ public class UserDAOImpl implements UserDAO {
 		Query query = session.createQuery("Select u from User u where u.userId=:userId");
 		query.setParameter("userId", userDTO.getUserId());
 		return (User)query.uniqueResult();
+	}
+
+	@Override
+	public void updateUser(UserDTO userDTO) throws DataIntegrityViolationException {
+		Session session = this.sessionFactory.getCurrentSession();
+		User user = getUserById(userDTO);
+		user.setFirstName(userDTO.getFirstName());
+		user.setLastName(userDTO.getLastName());
+		user.setUsername(userDTO.getUsername());
+		user.setEmail(userDTO.getEmail());
+		user.setPassword(userDTO.getPassword());
+		user.setAge(userDTO.getAge());
+		session.merge(user);
 	}
 	
 

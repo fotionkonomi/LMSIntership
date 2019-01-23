@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.exception.ConstraintViolationException;
 import org.lms.dto.UserDTO;
 import org.lms.model.User;
+import org.springframework.dao.DataIntegrityViolationException;
 
 public interface UserDAO {
 
@@ -20,4 +21,6 @@ public interface UserDAO {
 	void deActivateUser(UserDTO userDTO);
 	
 	Boolean isUserAdmin(UserDTO userDTO);
+	
+	void updateUser(UserDTO userDTO) throws DataIntegrityViolationException;
 }

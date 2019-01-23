@@ -23,9 +23,9 @@ public class LoginDAOImpl implements LoginDAO {
 	public UserDTO login(String username, String password) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session
-				.createQuery("Select u from User u where u.username = :username AND u.password = :password");
-		query.setParameter("username", username);
-		query.setParameter("password", Encryptor.encrypt(password, 12));
+				.createQuery("Select u from User u where u.username LIKE :username AND u.password LIKE :password");
+		query.setString("username", username);
+		query.setString("password", Encryptor.encrypt(password, 12));
 		User user = (User) query.uniqueResult();
 		if (user != null) {
 			return userConverter.toDTO(user);
