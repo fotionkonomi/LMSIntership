@@ -15,22 +15,23 @@
 					<a href="request.xhtml"><h:graphicImage class="logo"
 							url="https://parentnetworkwny.org/wp-content/uploads/resources-blue.png" /></a>
 					<ul>
-						<li><div class="dropdown">
-								<ui:fragment rendered="#{userBean.isUserAdmin() eq true}">
+						<ui:fragment rendered="#{userBean.isUserAdmin() eq true}">
+							<li><div class="dropdown">
 									<a href="category.xhtml">Add Category</a>
-								</ui:fragment>
-							</div></li>
+								</div></li>
 
-						<li><a href="book.xhtml">Add Book</a></li>
+							<li><a href="book.xhtml">Add Book</a></li>
 
-						<li><a href="request.xhtml">Requests</a></li>
+							<li><a href="choose-roles.xhtml">Roles of users</a></li>
+							<li><a href="request.xhtml">Requests</a></li>
+						</ui:fragment>
 						<li><div class="dropdown">
 
 								<a href="#" class="dropbtn">#{userBean.username}</a>
 								<div class="dropdown-content">
 									<a href="profile.xhtml">Manage Profile</a>
 									<h:commandLink action="#{logOutBean.logout}">Log Out</h:commandLink>
-									<a href="choose-roles.xhtml">Roles</a>
+
 								</div>
 							</div></li>
 					</ul>

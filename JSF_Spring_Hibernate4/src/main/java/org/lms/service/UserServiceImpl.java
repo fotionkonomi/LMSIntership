@@ -53,16 +53,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void updateUser(UserDTO userDTO) throws DataIntegrityViolationException{
+	public void updateUser(UserDTO userDTO) throws DataIntegrityViolationException {
 		this.userDAO.updateUser(userDTO);
-	}
-
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
 	}
 
 	@Override
@@ -77,4 +69,23 @@ public class UserServiceImpl implements UserService {
 		this.userDAO.makeUserAdmin(userDTO);
 	}
 
+	@Override
+	@Transactional
+	public Boolean isAUserAdmin(UserDTO userDTO) {
+		return this.userDAO.isAUserAdmin(userDTO);
+	}
+
+	@Override
+	@Transactional
+	public Boolean isAUserSecretary(UserDTO userDTO) {
+		return this.userDAO.isAUserSecretary(userDTO);
+	}
+
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
 }

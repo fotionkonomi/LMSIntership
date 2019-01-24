@@ -31,6 +31,7 @@ public class UserBean {
 	private Integer userId;
 	private UserDTO userDTOChanges;
 	private String confirmation;
+	private UserDTO userDTOSelectedInRoleTable;
 	
 	@PostConstruct
 	public void init() {
@@ -111,6 +112,14 @@ public class UserBean {
 
 	public Boolean isUserAdmin() {
 		return userService.isUserAdmin(userDTOLogged);
+	}
+	
+	public Boolean isAUserDTOAdmin(UserDTO userDTO) {
+		return this.userService.isAUserAdmin(userDTO);
+	}
+	
+	public Boolean isUserSecretary(UserDTO userDTO) {
+		return this.userService.isAUserSecretary(userDTO);
 	}
 
 	public UserDTO getUserDTOChanges() {
@@ -225,9 +234,17 @@ public class UserBean {
 		return ("deleted");
 	}
 	
-	public String becomeAdmin() {
-		this.userService.makeUserAdmin(userDTOLogged);
+	public String becomeAdmin(UserDTO userDTO) {
+		this.userService.makeUserAdmin(userDTO);
 		return "header-admin";
+	}
+
+	public UserDTO getUserDTOSelectedInRoleTable() {
+		return userDTOSelectedInRoleTable;
+	}
+
+	public void setUserDTOSelectedInRoleTable(UserDTO userDTOSelectedInRoleTable) {
+		this.userDTOSelectedInRoleTable = userDTOSelectedInRoleTable;
 	}
 	
 

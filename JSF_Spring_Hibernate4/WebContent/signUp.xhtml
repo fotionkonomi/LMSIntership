@@ -20,7 +20,6 @@
 	border: solid;
 	border-color: #adadad;
 	font-size: 14px;
-	
 }
 </style>
 </h:head>
@@ -31,8 +30,10 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<h:form class="login100-form validate-form">
-					<center><h2>Welcome</h2></center>
-					<br/>
+					<center>
+						<h2>Welcome</h2>
+					</center>
+					<br />
 					<div class="wrap-input100 validate-input">
 						<h:inputText class="input100" value="#{signUpBean.firstName}"
 							a:placeholder="First Name" required="true"
@@ -84,16 +85,17 @@
 						<p:messages for="age" closable="true"></p:messages>
 					</div>
 
-						<h:selectOneMenu id="gender" class="select" value="#{signUpBean.gender}">
-							<f:selectItem itemValue="0" itemLabel="Select your gender" />
-							<f:selectItem itemValue="Male" itemLabel="Male" />
-							<f:selectItem itemValue="Female" itemLabel="Female" />
-						</h:selectOneMenu>
-						<p:messages for="gender" closable="true"></p:messages>
-					<br/>
-					<br/>
-					<br/>
-					
+					<h:selectOneMenu id="gender" class="select"
+						value="#{signUpBean.gender}">
+						<f:selectItem itemValue="0" itemLabel="Select your gender" />
+						<f:selectItem itemValue="Male" itemLabel="Male" />
+						<f:selectItem itemValue="Female" itemLabel="Female" />
+					</h:selectOneMenu>
+					<p:messages for="gender" closable="true"></p:messages>
+					<br />
+					<br />
+					<br />
+
 					<div class="wrap-input100 validate-input">
 						<h:inputSecret class="input100" value="#{signUpBean.password}"
 							required="true" requiredMessage="Please enter a password"
@@ -103,8 +105,9 @@
 						</h:inputSecret>
 						<p:messages for="password" closable="true"></p:messages>
 					</div>
+					<p:messages closable="true"></p:messages>
 					<p:messages for="Existing" closable="true">
-					
+
 					</p:messages>
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">

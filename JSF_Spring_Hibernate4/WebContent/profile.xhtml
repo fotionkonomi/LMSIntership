@@ -120,17 +120,20 @@
 								<p:commandButton value="No" type="button"
 									styleClass="ui-confirmdialog-no" icon="pi pi-times" />
 							</p:confirmDialog>
+							<ui:fragment rendered="#{userBean.isUserAdmin() eq false}">
 
-							<p:commandButton class="button"
-								value="I want to deactivate my account"
-								action="#{userBean.deActivateMyAccount}" update="message">
-								<p:confirm header="Confirmation"
-									message="This action is permanent, Are you sure?" />
-							</p:commandButton>
+								<p:commandButton class="button"
+									value="I want to deactivate my account"
+									action="#{userBean.deActivateMyAccount}" update="message">
+									<p:confirm header="Confirmation"
+										message="This action is permanent, Are you sure?" />
+								</p:commandButton>
+							</ui:fragment>
+
 						</div>
 
 					</div>
-				
+
 
 				</h:form>
 			</div>

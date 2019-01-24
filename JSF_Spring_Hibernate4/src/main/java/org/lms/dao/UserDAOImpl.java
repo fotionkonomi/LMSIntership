@@ -6,14 +6,10 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.lms.converter.UserConverter;
-import org.lms.converter.UserConverterImpl;
 import org.lms.dto.UserDTO;
 import org.lms.model.Role;
 import org.lms.model.User;
-import org.lms.service.RoleServiceImpl;
-import org.lms.utils.Encryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
@@ -44,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 
 	public List<UserDTO> listUser() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<User> userList = session.createQuery("Select u From User u").list();
+		List<User> userList = session.createQuery("Select u From User u where u.activated=1").list();
 		List<UserDTO> userDTOList = new ArrayList<UserDTO>();
 		for (User user : userList) {
 			userDTOList.add(userConverter.toDTO(user));
@@ -108,6 +104,21 @@ public class UserDAOImpl implements UserDAO {
 		}
 	}
 
+	@Override
+	public UserDTO findUser(String username, String password) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session
+				.createQuery("Select u from User u where u.username LIKE :username AND u.password LIKE :password");
+		query.setString("username", username);
+		query.setString("password", password);
+		User user = (User) query.uniqueResult();
+		if (user != null) {
+			return userConverter.toDTO(user);
+		}
+		return null;
+	}
+
+	@Override
 	public User getUserById(UserDTO userDTO) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select u from User u where u.userId=:userId");
@@ -143,8 +154,33 @@ public class UserDAOImpl implements UserDAO {
 		Role role = roleDAO.getAdminRole();
 		user.addRole(role);
 		session.merge(user);
-		
+
 	}
-	
+
+	@Override
+	public Boolean isAUserAdmin(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select r from Role r where r.roleId=1");
+		Role role = (Role) query.uniqueResult();
+		User user = getUserById(userDTO);
+		if (user.getRolesOfThisUser().contains(role)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public Boolean isAUserSecretary(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("Select r from Role r where r.roleId=3");
+		Role role = (Role) query.uniqueResult();
+		User user = getUserById(userDTO);
+		if (user.getRolesOfThisUser().contains(role)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

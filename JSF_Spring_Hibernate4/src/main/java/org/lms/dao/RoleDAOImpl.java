@@ -1,5 +1,6 @@
 package org.lms.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -34,31 +35,40 @@ public class RoleDAOImpl implements RoleDAO {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select r from Role r where r.roleId = :roleId");
 		query.setParameter("roleId", roleDTO.getRoleId());
-		return (Role)query.uniqueResult();
+		return (Role) query.uniqueResult();
 	}
 
 	@Override
 	public Role getAdminRole() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select r from Role r where r.roleId = 1");
-		return (Role)query.uniqueResult();
+		return (Role) query.uniqueResult();
 	}
 
 	@Override
 	public Role getStudentRole() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select r from Role r where r.roleId = 2");
-		return (Role)query.uniqueResult();
+		return (Role) query.uniqueResult();
 	}
 
 	@Override
 	public Role getSecretaryRole() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select r from Role r where r.roleId = 3");
-		return (Role)query.uniqueResult();
+		return (Role) query.uniqueResult();
 	}
-	
-	
 
+	@Override
+	public List<Role> toModelListFromString(List<String> rolesString) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Role> roles = new ArrayList<Role>();
+		for (String stringRole : rolesString) {
+			Query query = session.createQuery("Select r from Role r where r.roleName = :stringRole");
+			query.setParameter("stringRole", stringRole);
+			roles.add((Role) query.uniqueResult());
+		}
+		return roles;
+	}
 
 }

@@ -1,9 +1,6 @@
 package org.lms.dao;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-
-import org.hibernate.exception.ConstraintViolationException;
 import org.lms.dto.UserDTO;
 import org.lms.model.User;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,4 +24,13 @@ public interface UserDAO {
 	void deleteAccount(UserDTO userDTO);
 	
 	void makeUserAdmin(UserDTO userDTO);
+
+	User getUserById(UserDTO userDTO);
+
+	UserDTO findUser(String username, String password);
+	
+	Boolean isAUserAdmin(UserDTO userDTO);
+	
+	Boolean isAUserSecretary(UserDTO userDTO);
+	
 }

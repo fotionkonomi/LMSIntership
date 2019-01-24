@@ -52,6 +52,9 @@
 							<ui:fragment rendered="#{user.gender eq true}">
 								<td>Male</td>
 							</ui:fragment>
+							<ui:fragment rendered="#{user.gender eq false}">
+								<td>Female</td>
+							</ui:fragment>
 							
 							<td><h:commandButton class="button"
 									style="background-color: green;" action="#{userBean.activate}"

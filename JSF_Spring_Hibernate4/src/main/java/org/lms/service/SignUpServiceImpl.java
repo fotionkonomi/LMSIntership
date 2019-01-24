@@ -1,5 +1,7 @@
 package org.lms.service;
 
+import java.util.List;
+
 import org.hibernate.exception.ConstraintViolationException;
 import org.lms.dao.SignUpDAO;
 import org.lms.dto.UserDTO;
@@ -23,6 +25,12 @@ public class SignUpServiceImpl implements SignUpService {
 
 	public void setSignUpDAO(SignUpDAO signUpDAO) {
 		this.signUpDAO = signUpDAO;
+	}
+
+	@Override
+	@Transactional
+	public void addRolesForUser(UserDTO userDTO, List<String> rolesString) {
+		this.signUpDAO.addRolesForUser(userDTO, rolesString);
 	}
 
 }

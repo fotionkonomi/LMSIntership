@@ -1,5 +1,6 @@
 package org.lms.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.lms.dto.RoleDTO;
@@ -12,4 +13,5 @@ public interface RoleDAO {
 	Role getAdminRole();
 	Role getStudentRole();
 	Role getSecretaryRole();
+    List<Role> toModelListFromString(List<String> rolesString);
 }
