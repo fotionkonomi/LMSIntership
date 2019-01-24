@@ -108,6 +108,8 @@
 			ref="hibernate4AnnotatedSessionFactory" />
 		<beans:property name="userConverter"
 			ref="userConverter"></beans:property>
+		<beans:property name="roleDAO"
+			ref="roleDAO"></beans:property>
 	</beans:bean>
 	<beans:bean id="userService"
 		class="org.lms.service.UserServiceImpl">

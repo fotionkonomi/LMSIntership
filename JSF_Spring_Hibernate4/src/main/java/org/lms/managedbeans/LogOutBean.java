@@ -10,12 +10,16 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class LogOutBean {
 	public void logout() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().invalidateSession();
+		invalidateSession();
 		try {
-			context.getExternalContext().redirect("index.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void invalidateSession() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().invalidateSession();
 	}
 }

@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 
 import org.lms.dto.UserDTO;
 import org.lms.service.LoginService;
+import org.lms.service.UserService;
 
 @ManagedBean(name = "loginBean")
 @RequestScoped
@@ -19,6 +20,8 @@ public class LoginBean {
 	private String password;
 	@ManagedProperty(value = "#{loginService}")
 	private LoginService loginService;
+	@ManagedProperty(value = "#{userService}")
+	private UserService userService;
 
 	@PostConstruct
 	public void init() {
@@ -28,11 +31,26 @@ public class LoginBean {
 	public String login() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		userDTO = loginService.login(username, password);
-		
+
 		if (userDTO == null) {
 			context.addMessage(null, new FacesMessage("Wrong username or password"));
 			return null;
 		} else {
+			if (userDTO.getActivated() == 0) {
+				context.addMessage(null,
+						new FacesMessage("This account has not been activated yet by the administrators, please wait"));
+				return null;
+			} else if (userDTO.getActivated() == -2) {
+				context.addMessage(null, new FacesMessage("This account has been deactivated"));
+				return null;
+
+			} else if (userDTO.getActivated() == -1) {
+				context.addMessage(null,
+						new FacesMessage("Your profile was not approved, this profile is now deleted\r\n"
+								+ "		from our database, please create a new profile with correct data"));
+				userService.deleteUser(userDTO);
+				return null;
+			}
 			context.getExternalContext().getSessionMap().put("user", userDTO);
 			context.getExternalContext().getSessionMap().put("userId", userDTO.getUserId());
 			context.getExternalContext().getSessionMap().put("firstName", userDTO.getFirstName());
@@ -40,7 +58,7 @@ public class LoginBean {
 			context.getExternalContext().getSessionMap().put("username", userDTO.getUsername());
 			context.getExternalContext().getSessionMap().put("email", userDTO.getEmail());
 			context.getExternalContext().getSessionMap().put("age", userDTO.getAge());
-			
+
 			return ("login");
 		}
 	}
@@ -75,6 +93,22 @@ public class LoginBean {
 
 	public void setLoginService(LoginService loginService) {
 		this.loginService = loginService;
+	}
+
+	public UserDTO getUserDTO() {
+		return userDTO;
+	}
+
+	public void setUserDTO(UserDTO userDTO) {
+		this.userDTO = userDTO;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 }

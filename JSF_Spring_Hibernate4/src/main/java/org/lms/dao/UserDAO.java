@@ -23,4 +23,8 @@ public interface UserDAO {
 	Boolean isUserAdmin(UserDTO userDTO);
 	
 	void updateUser(UserDTO userDTO) throws DataIntegrityViolationException;
+	
+	void deleteAccount(UserDTO userDTO);
+	
+	void makeUserAdmin(UserDTO userDTO);
 }

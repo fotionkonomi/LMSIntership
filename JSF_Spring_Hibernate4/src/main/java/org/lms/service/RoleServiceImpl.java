@@ -3,6 +3,7 @@ package org.lms.service;
 import java.util.List;
 
 import org.lms.dao.RoleDAO;
+import org.lms.dto.RoleDTO;
 import org.lms.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,21 +25,26 @@ public class RoleServiceImpl implements RoleService {
 
 	@Override
 	@Transactional
-	public void addRole(Role role) {
-		roleDAO.addRole(role);
+	public Role getRoleById(RoleDTO roleDTO) {
+		return this.roleDAO.getRoleById(roleDTO);
 	}
 
 	@Override
-	@Transactional
-	public List<Role> listRole() {
-		return roleDAO.listRole();
+	public Role getAdminRole() {
+		return this.roleDAO.getAdminRole();
 	}
 
 	@Override
-	@Transactional
-	public void updateRole(Role role) {
-		roleDAO.updateRole(role);
+	public Role getStudentRole() {
+		return this.roleDAO.getStudentRole();
 	}
+
+	@Override
+	public Role getSecretaryRole() {
+		return this.roleDAO.getSecretaryRole();
+	}
+
+	
 
 	
 	

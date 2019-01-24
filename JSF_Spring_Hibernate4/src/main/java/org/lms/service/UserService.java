@@ -14,4 +14,8 @@ public interface UserService {
     void deActivateUser(UserDTO userDTO);
     Boolean isUserAdmin(UserDTO userDTO);
     void updateUser(UserDTO userDTO) throws DataIntegrityViolationException;
+    void deleteAccount(UserDTO userDTO);
+    void makeUserAdmin(UserDTO userDTO);
 }
+
+

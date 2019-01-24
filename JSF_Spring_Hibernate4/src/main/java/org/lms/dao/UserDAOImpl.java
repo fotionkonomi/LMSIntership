@@ -27,8 +27,19 @@ public class UserDAOImpl implements UserDAO {
 	@Autowired
 	private UserConverter userConverter;
 
+	@Autowired
+	private RoleDAO roleDAO;
+
 	public void setSessionFactory(SessionFactory sf) {
 		this.sessionFactory = sf;
+	}
+
+	public RoleDAO getRoleDAO() {
+		return roleDAO;
+	}
+
+	public void setRoleDAO(RoleDAO roleDAO) {
+		this.roleDAO = roleDAO;
 	}
 
 	public List<UserDTO> listUser() {
@@ -41,20 +52,18 @@ public class UserDAOImpl implements UserDAO {
 		return userDTOList;
 	}
 
-	
-	
 	@Override
-	public List<UserDTO> findUsersThatAreNotActivated() {	
+	public List<UserDTO> findUsersThatAreNotActivated() {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select u from User u where u.activated=0");
 		List<User> users = query.list();
 		List<UserDTO> usersDTO = new ArrayList<>();
-		for(User user : users) {
+		for (User user : users) {
 			usersDTO.add(userConverter.toDTO(user));
 		}
 		return usersDTO;
 	}
-	
+
 	@Override
 	public void activateUser(UserDTO userDTO) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -62,9 +71,8 @@ public class UserDAOImpl implements UserDAO {
 		user.setActivated(1);
 		session.merge(user);
 	}
-	
-	
-	public UserConverter getUserConverter() { 
+
+	public UserConverter getUserConverter() {
 		return userConverter;
 	}
 
@@ -86,25 +94,25 @@ public class UserDAOImpl implements UserDAO {
 		user.setActivated(-1);
 		session.merge(user);
 	}
-	
+
 	@Override
 	public Boolean isUserAdmin(UserDTO userDTO) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select r from Role r where r.roleId=1");
-		Role role = (Role)query.uniqueResult();
+		Role role = (Role) query.uniqueResult();
 		User user = getUserById(userDTO);
-		if(user.getRolesOfThisUser().contains(role)) {
+		if (user.getRolesOfThisUser().contains(role)) {
 			return true;
 		} else {
 			return false;
-		} 
+		}
 	}
-	
+
 	public User getUserById(UserDTO userDTO) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Query query = session.createQuery("Select u from User u where u.userId=:userId");
 		query.setParameter("userId", userDTO.getUserId());
-		return (User)query.uniqueResult();
+		return (User) query.uniqueResult();
 	}
 
 	@Override
@@ -118,6 +126,24 @@ public class UserDAOImpl implements UserDAO {
 		user.setPassword(userDTO.getPassword());
 		user.setAge(userDTO.getAge());
 		session.merge(user);
+	}
+
+	@Override
+	public void deleteAccount(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		User userToDelete = getUserById(userDTO);
+		userToDelete.setActivated(-2);
+		session.merge(userToDelete);
+	}
+
+	@Override
+	public void makeUserAdmin(UserDTO userDTO) {
+		Session session = this.sessionFactory.getCurrentSession();
+		User user = getUserById(userDTO);
+		Role role = roleDAO.getAdminRole();
+		user.addRole(role);
+		session.merge(user);
+		
 	}
 	
 

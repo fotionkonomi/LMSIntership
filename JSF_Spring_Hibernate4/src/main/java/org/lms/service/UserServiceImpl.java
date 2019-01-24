@@ -65,4 +65,16 @@ public class UserServiceImpl implements UserService {
 		this.userDAO = userDAO;
 	}
 
+	@Override
+	@Transactional
+	public void deleteAccount(UserDTO userDTO) {
+		this.userDAO.deleteAccount(userDTO);
+	}
+
+	@Override
+	@Transactional
+	public void makeUserAdmin(UserDTO userDTO) {
+		this.userDAO.makeUserAdmin(userDTO);
+	}
+
 }

@@ -31,7 +31,7 @@ public class UserBean {
 	private Integer userId;
 	private UserDTO userDTOChanges;
 	private String confirmation;
-
+	
 	@PostConstruct
 	public void init() {
 		userDTOChanges = new UserDTO();
@@ -187,7 +187,7 @@ public class UserBean {
 		} else {
 			checkForEncryption = true;
 		}
-		if(checkForError == true) {
+		if (checkForError == true) {
 			return null;
 		}
 		userDTOLogged.setFirstName(newFirstName);
@@ -217,5 +217,20 @@ public class UserBean {
 		context.getExternalContext().getSessionMap().replace("age", userDTOLogged.getAge());
 		return ("changed");
 	}
+
+	public String deActivateMyAccount() {
+		userService.deleteAccount(userDTOLogged);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().invalidateSession();
+		return ("deleted");
+	}
+	
+	public String becomeAdmin() {
+		this.userService.makeUserAdmin(userDTOLogged);
+		return "header-admin";
+	}
+	
+
+	
 
 }

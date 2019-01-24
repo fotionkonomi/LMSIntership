@@ -6,7 +6,7 @@
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<h:outputStylesheet library="css" name="forms.css" />
-	<h:outputStylesheet library="css" name="main.css"/>
+	<h:outputStylesheet library="css" name="main.css" />
 
 </h:head>
 <h:body>
@@ -21,22 +21,38 @@
 			<section id="contact">
 				<div class="containeri">
 					<h:form class="form">
-		Name of category: <h:inputText class="input" required="true" requiredMessage="Please, enter the name!"
-							value="#{categoryBean.categoryName}" a:placeholder="Name"  />
-		Description: <h:inputText class="input" a:placeholder="Description" required="true" requiredMessage="Please, enter the description"
+						<p:growl id="message" showDetail="true" />
+					
+		Name of category: <h:inputText id="name" class="input" required="true"
+							requiredMessage="Please, enter the name!"
+							value="#{categoryBean.categoryName}" a:placeholder="Name" />
+						<p:messages for="name"></p:messages>
+		Description: <h:inputText id="description" class="input"
+							a:placeholder="Description" required="true"
+							requiredMessage="Please, enter the description"
 							value="#{categoryBean.categoryDescription}" />
+						<p:messages for="description"></p:messages>
 						<br />
 
 
-						<h:commandButton class="submit" value="Create Category"
-							action="#{categoryBean.addCategory}">
-						</h:commandButton>
+						<p:commandButton class="submit" update="message"
+							value="Create Category" action="#{categoryBean.addCategory}">
+							<p:confirm header="Confirmation" message="Are you sure?" />
 
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Yes" type="button"
+								styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+							<p:commandButton value="No" type="button"
+								styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+						</p:confirmDialog>
 					</h:form>
 				</div>
 			</section>
 		</div>
 	</div>
+
 </h:body>
 </html>
 
